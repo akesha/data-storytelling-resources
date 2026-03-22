@@ -29,90 +29,108 @@
     --gray-900: #212121;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
     --radius: 10px;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: var(--gray-100);
-    color: var(--gray-900);
-    line-height: 1.6;
+    background: var(--gray-100); color: var(--gray-900); line-height: 1.6;
   }
 
-  /* HEADER */
+  /* HERO */
   .hero {
     background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 100%);
-    color: white;
-    padding: 3rem 2rem 2.5rem;
-    text-align: center;
+    color: white; padding: 2.5rem 2rem 2rem; text-align: center;
   }
-  .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.4rem; }
-  .hero p { font-size: 1.05rem; opacity: 0.9; max-width: 680px; margin: 0 auto; }
-  .hero .subtitle { font-size: 0.85rem; opacity: 0.7; margin-top: 0.6rem; }
+  .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .hero p { font-size: 1rem; opacity: 0.9; max-width: 680px; margin: 0 auto; }
+  .hero .subtitle { font-size: 0.82rem; opacity: 0.65; margin-top: 0.5rem; }
 
-  /* STATS BAR */
+  /* STATS */
   .stats-bar {
     display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
-    padding: 1rem 2rem;
-    background: white;
-    border-bottom: 1px solid var(--gray-200);
+    padding: 0.8rem 2rem; background: white; border-bottom: 1px solid var(--gray-200);
   }
   .stat { text-align: center; }
-  .stat .num { font-size: 1.5rem; font-weight: 700; color: var(--green-dark); }
-  .stat .label { font-size: 0.78rem; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat .num { font-size: 1.4rem; font-weight: 700; color: var(--green-dark); }
+  .stat .label { font-size: 0.72rem; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* CONTROLS */
   .controls {
-    max-width: 1200px; margin: 1.5rem auto 0; padding: 0 1.5rem;
-    display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center;
+    max-width: 1200px; margin: 1.2rem auto 0; padding: 0 1.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
   }
   .search-box {
-    flex: 1 1 280px; padding: 0.6rem 1rem; font-size: 0.95rem;
-    border: 2px solid var(--gray-300); border-radius: 8px; outline: none;
-    transition: border-color 0.2s;
+    flex: 1 1 260px; padding: 0.55rem 1rem; font-size: 0.92rem;
+    border: 2px solid var(--gray-300); border-radius: 8px; outline: none; transition: border-color 0.2s;
   }
   .search-box:focus { border-color: var(--green-mid); }
-
   .filter-btn {
-    padding: 0.45rem 0.9rem; font-size: 0.82rem; border: 1.5px solid var(--gray-300);
+    padding: 0.4rem 0.85rem; font-size: 0.8rem; border: 1.5px solid var(--gray-300);
     border-radius: 20px; background: white; cursor: pointer; transition: all 0.2s;
     font-weight: 500; white-space: nowrap;
   }
   .filter-btn:hover { border-color: var(--green-mid); background: var(--green-light); }
   .filter-btn.active { background: var(--green-dark); color: white; border-color: var(--green-dark); }
+  .filter-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-600); font-weight: 600; margin-right: 0.1rem; }
 
-  .filter-group { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
-  .filter-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-600); font-weight: 600; margin-right: 0.2rem; }
+  /* ADD RESOURCE BUTTON */
+  .add-btn {
+    padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600;
+    background: var(--green-dark); color: white; border: none; border-radius: 8px;
+    cursor: pointer; transition: background 0.2s; margin-left: auto;
+  }
+  .add-btn:hover { background: var(--green-mid); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white; border-radius: 12px; padding: 2rem; width: 90%; max-width: 540px;
+    max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .modal h2 { font-size: 1.3rem; margin-bottom: 0.2rem; }
+  .modal .modal-sub { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1.2rem; }
+  .modal label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--gray-800); }
+  .modal input, .modal select, .modal textarea {
+    width: 100%; padding: 0.5rem 0.7rem; font-size: 0.9rem; border: 1.5px solid var(--gray-300);
+    border-radius: 6px; margin-bottom: 0.9rem; font-family: inherit; outline: none;
+  }
+  .modal input:focus, .modal select:focus, .modal textarea:focus { border-color: var(--green-mid); }
+  .modal textarea { resize: vertical; min-height: 70px; }
+  .modal-actions { display: flex; gap: 0.6rem; justify-content: flex-end; margin-top: 0.5rem; }
+  .modal-actions button {
+    padding: 0.5rem 1.2rem; border-radius: 6px; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+  }
+  .btn-cancel { background: var(--gray-200); border: none; color: var(--gray-800); }
+  .btn-save { background: var(--green-dark); border: none; color: white; }
+  .btn-save:hover { background: var(--green-mid); }
 
   /* SECTION HEADERS */
   .section-header {
-    max-width: 1200px; margin: 2rem auto 0.8rem; padding: 0 1.5rem;
-    display: flex; align-items: center; gap: 0.6rem;
+    max-width: 1200px; margin: 1.8rem auto 0.6rem; padding: 0 1.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
   }
-  .section-header h2 {
-    font-size: 1.3rem; font-weight: 700; color: var(--gray-900);
-  }
-  .section-header .icon { font-size: 1.4rem; }
+  .section-header h2 { font-size: 1.2rem; font-weight: 700; }
   .section-header .count {
-    font-size: 0.75rem; background: var(--gray-200); border-radius: 10px;
-    padding: 0.15rem 0.6rem; color: var(--gray-600); font-weight: 600;
+    font-size: 0.72rem; background: var(--gray-200); border-radius: 10px;
+    padding: 0.12rem 0.55rem; color: var(--gray-600); font-weight: 600;
   }
 
   /* GRID */
   .grid {
-    max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 1rem;
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem;
+    max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 0.5rem;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 0.9rem;
   }
 
   /* CARDS */
   .card {
     background: white; border-radius: var(--radius); overflow: hidden;
     box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, transform 0.15s;
-    display: flex; flex-direction: column;
-    border-left: 4px solid var(--gray-300);
+    display: flex; flex-direction: column; border-left: 4px solid var(--gray-300);
   }
   .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
   .card[data-type="book"] { border-left-color: var(--blue-dark); }
@@ -125,15 +143,14 @@
   .card[data-type="teaching"] { border-left-color: #5c6bc0; }
   .card[data-type="video"] { border-left-color: #d81b60; }
 
-  .card-body { padding: 1rem 1.1rem; flex: 1; display: flex; flex-direction: column; }
-  .card-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; line-height: 1.35; }
+  .card-body { padding: 0.9rem 1rem; flex: 1; display: flex; flex-direction: column; }
+  .card-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; line-height: 1.3; }
   .card-title a { color: var(--gray-900); text-decoration: none; }
   .card-title a:hover { color: var(--green-dark); text-decoration: underline; }
-  .card-desc { font-size: 0.85rem; color: var(--gray-600); flex: 1; margin-bottom: 0.6rem; }
-  .card-meta { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-
+  .card-desc { font-size: 0.83rem; color: var(--gray-600); flex: 1; margin-bottom: 0.5rem; }
+  .card-meta { display: flex; flex-wrap: wrap; gap: 0.3rem; }
   .tag {
-    display: inline-block; font-size: 0.7rem; padding: 0.15rem 0.55rem;
+    display: inline-block; font-size: 0.68rem; padding: 0.12rem 0.5rem;
     border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;
   }
   .tag-book { background: var(--blue-light); color: var(--blue-dark); }
@@ -145,52 +162,54 @@
   .tag-framework { background: #fff8e1; color: #f57f17; }
   .tag-teaching { background: #e8eaf6; color: #283593; }
   .tag-video { background: #fce4ec; color: #c62828; }
+  .tag-topic { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
+  .card-source { font-size: 0.7rem; color: var(--gray-600); margin-top: 0.25rem; }
 
-  .tag-topic {
-    background: var(--gray-100); color: var(--gray-600);
-    border: 1px solid var(--gray-200);
+  /* STATUS */
+  .status-bar {
+    max-width: 1200px; margin: 0.8rem auto; padding: 0 1.5rem;
+    font-size: 0.8rem; color: var(--gray-600); display: flex; align-items: center; gap: 0.5rem;
   }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .status-dot.connected { background: var(--green-mid); }
+  .status-dot.local { background: var(--orange); }
+  .status-dot.offline { background: var(--gray-300); }
 
-  .card-source { font-size: 0.72rem; color: var(--gray-600); margin-top: 0.3rem; }
-
-  /* FRAMEWORK CARDS (expanded) */
-  .framework-card {
-    background: white; border-radius: var(--radius); overflow: hidden;
-    box-shadow: var(--shadow-sm); border-left: 4px solid #f9a825;
-    margin-bottom: 0; padding: 1.2rem 1.3rem;
-  }
-  .framework-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--gray-900); }
-  .framework-card ul { padding-left: 1.2rem; margin: 0.3rem 0; }
-  .framework-card li { font-size: 0.85rem; color: var(--gray-800); margin-bottom: 0.25rem; }
-  .framework-card .fw-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: #f57f17; font-weight: 700; margin-bottom: 0.4rem; }
-  .framework-card p { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 0.4rem; }
-
-  .frameworks-grid {
-    max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 1rem;
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem;
-  }
-
-  /* HIDDEN */
+  .no-results { text-align: center; padding: 3rem 1rem; color: var(--gray-600); max-width: 1200px; margin: 0 auto; }
   .hidden { display: none !important; }
 
-  /* NO RESULTS */
-  .no-results {
-    text-align: center; padding: 3rem 1rem; color: var(--gray-600);
-    max-width: 1200px; margin: 0 auto;
-  }
-  .no-results .emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  /* LOADING */
+  .loading { text-align: center; padding: 3rem; color: var(--gray-600); }
+  .spinner { display: inline-block; width: 30px; height: 30px; border: 3px solid var(--gray-200); border-top-color: var(--green-mid); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* FOOTER */
-  footer {
-    text-align: center; padding: 2rem 1rem; color: var(--gray-600);
-    font-size: 0.8rem; border-top: 1px solid var(--gray-200);
-    margin-top: 2rem; background: white;
+  /* CONFIG BANNER */
+  .config-banner {
+    max-width: 1200px; margin: 1rem auto; padding: 1rem 1.5rem;
+    background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px;
+    font-size: 0.88rem; color: var(--gray-800); line-height: 1.5;
   }
+  .config-banner code { background: #fff3e0; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.82rem; }
+  .config-banner .config-form { margin-top: 0.8rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .config-banner input {
+    flex: 1; min-width: 200px; padding: 0.45rem 0.7rem; font-size: 0.85rem;
+    border: 1.5px solid #ffe082; border-radius: 6px; outline: none;
+  }
+  .config-banner button {
+    padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 600;
+    background: var(--green-dark); color: white; border: none; border-radius: 6px; cursor: pointer;
+  }
+
+  footer {
+    text-align: center; padding: 1.5rem 1rem; color: var(--gray-600);
+    font-size: 0.78rem; border-top: 1px solid var(--gray-200); margin-top: 2rem; background: white;
+  }
+  footer a { color: var(--green-dark); }
 
   @media (max-width: 600px) {
-    .hero h1 { font-size: 1.6rem; }
-    .grid, .frameworks-grid { grid-template-columns: 1fr; }
-    .stats-bar { gap: 1rem; }
+    .hero h1 { font-size: 1.5rem; }
+    .grid { grid-template-columns: 1fr; }
+    .controls { gap: 0.4rem; }
   }
 </style>
 </head>
@@ -199,646 +218,326 @@
 <div class="hero">
   <h1>Data Storytelling & Visualization</h1>
   <p>A curated resource portal for learning, teaching, and practicing data storytelling and visualization</p>
-  <div class="subtitle">Compiled from the O365-BL-SICE Data Visualization Resource Channel</div>
+  <div class="subtitle">Curated by Akesha Horton &middot; O365-BL-SICE Data Visualization Resource</div>
 </div>
 
 <div class="stats-bar">
-  <div class="stat"><div class="num" id="totalCount">0</div><div class="label">Total Resources</div></div>
-  <div class="stat"><div class="num" id="bookCount">0</div><div class="label">Books</div></div>
-  <div class="stat"><div class="num" id="articleCount">0</div><div class="label">Articles</div></div>
-  <div class="stat"><div class="num" id="toolCount">0</div><div class="label">Tools</div></div>
-  <div class="stat"><div class="num" id="frameworkCount">0</div><div class="label">Frameworks</div></div>
+  <div class="stat"><div class="num" id="totalCount">—</div><div class="label">Total</div></div>
+  <div class="stat"><div class="num" id="bookCount">—</div><div class="label">Books</div></div>
+  <div class="stat"><div class="num" id="articleCount">—</div><div class="label">Articles</div></div>
+  <div class="stat"><div class="num" id="toolCount">—</div><div class="label">Tools</div></div>
+  <div class="stat"><div class="num" id="frameworkCount">—</div><div class="label">Frameworks</div></div>
 </div>
 
-<div class="controls">
-  <input type="text" class="search-box" id="searchBox" placeholder="Search resources by title, description, or topic...">
-  <div class="filter-group">
-    <span class="filter-label">Type:</span>
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="book">Books</button>
-    <button class="filter-btn" data-filter="article">Articles</button>
-    <button class="filter-btn" data-filter="tool">Tools</button>
-    <button class="filter-btn" data-filter="blog">Blogs & Journals</button>
-    <button class="filter-btn" data-filter="podcast">Podcasts</button>
-    <button class="filter-btn" data-filter="video">Videos</button>
-    <button class="filter-btn" data-filter="research">Research</button>
-    <button class="filter-btn" data-filter="framework">Frameworks</button>
-    <button class="filter-btn" data-filter="teaching">Teaching</button>
+<div class="controls" id="controls">
+  <input type="text" class="search-box" id="searchBox" placeholder="Search by title, description, or topic...">
+  <span class="filter-label">Type:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="book">Books</button>
+  <button class="filter-btn" data-filter="article">Articles</button>
+  <button class="filter-btn" data-filter="tool">Tools</button>
+  <button class="filter-btn" data-filter="blog">Blogs</button>
+  <button class="filter-btn" data-filter="podcast">Podcasts</button>
+  <button class="filter-btn" data-filter="video">Videos</button>
+  <button class="filter-btn" data-filter="research">Research</button>
+  <button class="filter-btn" data-filter="framework">Frameworks</button>
+  <button class="filter-btn" data-filter="teaching">Teaching</button>
+  <button class="add-btn" id="addBtn">+ Add Resource</button>
+</div>
+
+<div class="status-bar" id="statusBar"></div>
+
+<!-- CONFIG BANNER (shown when Airtable not configured) -->
+<div class="config-banner hidden" id="configBanner">
+  <strong>Connect to Airtable</strong> to enable cloud sync — you and your colleagues can add resources from Airtable and they'll appear here automatically.
+  <div class="config-form">
+    <input type="text" id="cfgToken" placeholder="Airtable Personal Access Token">
+    <input type="text" id="cfgBaseId" placeholder="Base ID (e.g., appXXXXXXXXXX)">
+    <input type="text" id="cfgTableName" placeholder="Table name (default: Resources)" value="Resources">
+    <button onclick="saveConfig()">Connect</button>
   </div>
+  <div style="margin-top:0.5rem;font-size:0.78rem;color:var(--gray-600);">Your token is stored only in this browser's local storage and never sent anywhere except Airtable's API.</div>
 </div>
 
 <div id="content"></div>
-<div class="no-results hidden" id="noResults">
-  <div class="emoji">🔍</div>
-  <p>No resources match your search. Try a different keyword or filter.</p>
+<div class="no-results hidden" id="noResults"><p>No resources match your search.</p></div>
+<div class="loading hidden" id="loading"><div class="spinner"></div><p style="margin-top:0.5rem">Loading from Airtable...</p></div>
+
+<!-- ADD RESOURCE MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h2>Add Resource</h2>
+    <div class="modal-sub" id="modalSub">Add a new resource to the portal</div>
+    <label for="fTitle">Title *</label>
+    <input type="text" id="fTitle" placeholder="e.g., Storytelling with Data">
+    <label for="fUrl">URL *</label>
+    <input type="url" id="fUrl" placeholder="https://...">
+    <label for="fDesc">Description</label>
+    <textarea id="fDesc" placeholder="Brief description of this resource..."></textarea>
+    <label for="fType">Type *</label>
+    <select id="fType">
+      <option value="Article">Article</option>
+      <option value="Book">Book</option>
+      <option value="Tool">Tool</option>
+      <option value="Blog">Blog</option>
+      <option value="Podcast">Podcast</option>
+      <option value="Video">Video</option>
+      <option value="Research">Research</option>
+      <option value="Framework">Framework</option>
+      <option value="Teaching">Teaching</option>
+    </select>
+    <label for="fTopics">Topics (comma-separated)</label>
+    <input type="text" id="fTopics" placeholder="e.g., Data Storytelling, Higher Education">
+    <label for="fSource">Source</label>
+    <input type="text" id="fSource" placeholder="e.g., hbs.edu">
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" id="saveBtn" onclick="saveResource()">Save Resource</button>
+    </div>
+  </div>
 </div>
 
 <footer>
   <p>Data Storytelling & Visualization Resource Portal &middot; Curated by Akesha Horton</p>
-  <p>Last updated: March 2026</p>
+  <p>Powered by <a href="https://airtable.com" target="_blank">Airtable</a> &middot; Last synced: <span id="lastSync">—</span></p>
 </footer>
 
 <script>
-const resources = [
-  // ===== BOOKS =====
-  {
-    title: "Storytelling with Data",
-    url: "https://www.storytellingwithdata.com/books",
-    desc: "Five best-selling books by Cole Nussbaumer Knaflic on improving data visualization skills and the power of storytelling with data.",
-    type: "book",
-    topics: ["data storytelling", "data visualization"],
-    source: "storytellingwithdata.com"
-  },
-  {
-    title: "Data Visualisation: A Handbook for Data Driven Design",
-    url: "https://www.amazon.com/gp/product/B07NQPGL1P/",
-    desc: "By Andy Kirk. A comprehensive handbook for data-driven design covering visualization techniques and best practices.",
-    type: "book",
-    topics: ["data visualization", "design"],
-    source: "amazon.com"
-  },
-  {
-    title: "The Wall Street Journal Guide to Information Graphics",
-    url: "https://www.goodreads.com/book/show/6542897-the-wall-street-journal-guide-to-information-graphics",
-    desc: "The dos and don'ts of presenting data, facts, and figures in today's data-driven world.",
-    type: "book",
-    topics: ["data visualization", "design"],
-    source: "goodreads.com"
-  },
-  {
-    title: "Better Data Visualizations: A Guide for Scholars, Researchers, and Wonks",
-    url: "https://www.amazon.com/gp/product/0231193114",
-    desc: "By Jonathan Schwabish. A guide for creating effective visualizations aimed at academic and research audiences.",
-    type: "book",
-    topics: ["data visualization", "research"],
-    source: "amazon.com"
-  },
-  {
-    title: "Dear Data",
-    url: "https://www.dear-data.com/theproject",
-    desc: "A year-long analog data drawing project by Giorgia Lupi and Stefanie Posavec — hand-drawn personal data postcards sent across the Atlantic.",
-    type: "book",
-    topics: ["data visualization", "design", "creative"],
-    source: "dear-data.com"
-  },
-  {
-    title: "Invisible Women: Data Bias in a World Designed for Men",
-    url: "https://carolinecriadoperez.com/book/invisible-women/",
-    desc: "By Caroline Criado Perez. Exposes the gender data gap and systemic discrimination caused by ignoring half the population in data collection.",
-    type: "book",
-    topics: ["data ethics", "equity"],
-    source: "carolinecriadoperez.com"
-  },
-  {
-    title: "Naked Statistics: Stripping the Dread from the Data",
-    url: "https://www.amazon.com/gp/product/B089LY36PH/",
-    desc: "By Charles Wheelan. Makes statistics accessible by focusing on intuition behind inference, correlation, regression, and natural experiments.",
-    type: "book",
-    topics: ["statistics", "data literacy"],
-    source: "amazon.com"
-  },
-  {
-    title: "Everydata: The Misinformation Hidden in the Little Data You Consume Every Day",
-    url: "https://www.amazon.com/Everydata-Misinformation-Hidden-Little-Consume/dp/1629561010/",
-    desc: "By John H. Johnson and Mike Gluck. Reveals the misinformation hidden in everyday data consumption.",
-    type: "book",
-    topics: ["data literacy", "critical thinking"],
-    source: "amazon.com"
-  },
-  {
-    title: "The Visual Display of Quantitative Information (2nd Ed.)",
-    url: "https://www.amazon.com/Visual-Display-Quantitative-Information/dp/0961392142",
-    desc: "By Edward R. Tufte. A foundational classic on the theory and practice of data graphics.",
-    type: "book",
-    topics: ["data visualization", "design"],
-    source: "amazon.com"
-  },
-  {
-    title: "Design for Information",
-    url: "https://isabelmeirelles.com/book-design-for-information/",
-    desc: "By Isabel Meirelles. Explores the intersection of information design, visualization, and data representation.",
-    type: "book",
-    topics: ["data visualization", "design"],
-    source: "isabelmeirelles.com"
-  },
-  {
-    title: "Now You See It: An Introduction to Visual Data Sensemaking",
-    url: "https://www.goodreads.com/book/show/56888839-now-you-see-it",
-    desc: "Teaches how to understand your data visually before presenting it — a guide to visual data sensemaking.",
-    type: "book",
-    topics: ["data visualization", "analysis"],
-    source: "goodreads.com"
-  },
-  {
-    title: "Data Feminism",
-    url: "https://mitpress.mit.edu/9780262044004/data-feminism/",
-    desc: "Explores how data science is a form of power, examining justice and equity in data practices from a feminist perspective.",
-    type: "book",
-    topics: ["data ethics", "equity"],
-    source: "mitpress.mit.edu"
-  },
-  {
-    title: "Science Communication for Scientists",
-    url: "https://www.taylorfrancis.com/books/oa-mono/10.4324/9781003493938/",
-    desc: "Open-access textbook from the Alan Alda Center linking strategy, creativity, practice, and respect in science communication.",
-    type: "book",
-    topics: ["communication", "science"],
-    source: "taylorfrancis.com"
-  },
-  {
-    title: "Super Communicators (Charles Duhigg)",
-    url: "https://charlesduhigg.com/",
-    desc: "How to Unlock the Secret Language of Connection. Covers decision-making, emotional, and social mindsets in conversations.",
-    type: "book",
-    topics: ["communication", "audience"],
-    source: "charlesduhigg.com"
-  },
+// ============================================================
+// CONFIGURATION — stored in localStorage
+// ============================================================
+const CONFIG_KEY = 'dsvr_airtable_config';
+const LOCAL_KEY = 'dsvr_local_resources';
 
-  // ===== ARTICLES =====
-  {
-    title: "Data Storytelling: How to Tell a Great Story with Data",
-    url: "https://www.thoughtspot.com/data-trends/best-practices/data-storytelling",
-    desc: "An overview of crafting narratives by leveraging data, contextualizing it, and presenting to an audience.",
-    type: "article",
-    topics: ["data storytelling"],
-    source: "thoughtspot.com"
-  },
-  {
-    title: "The Structure(s) of Story",
-    url: "https://www.storytellingwithdata.com/blog/2020/5/21/the-structures-of-story",
-    desc: "How thinking and talking about story has evolved in data communication — from Storytelling with Data blog.",
-    type: "article",
-    topics: ["data storytelling", "narrative"],
-    source: "storytellingwithdata.com"
-  },
-  {
-    title: "Data Storytelling: How to Effectively Tell a Story with Data (HBS)",
-    url: "https://online.hbs.edu/blog/post/data-storytelling",
-    desc: "Harvard Business School guide on communicating insights from data using narratives and visualizations.",
-    type: "article",
-    topics: ["data storytelling"],
-    source: "online.hbs.edu"
-  },
-  {
-    title: "Effective Data Storytelling: Tips and Techniques for Success",
-    url: "https://www.dasca.org/world-of-data-science/article/effective-data-storytelling-tips-and-techniques",
-    desc: "Expert tips on data storytelling and data visualization to effectively communicate insights.",
-    type: "article",
-    topics: ["data storytelling", "data visualization"],
-    source: "dasca.org"
-  },
-  {
-    title: "The Next Chapter in Analytics: Data Storytelling (MIT Sloan)",
-    url: "https://mitsloan.mit.edu/ideas-made-to-matter/next-chapter-analytics-data-storytelling",
-    desc: "How presenting data with empathy and context leads business users to better decision-making.",
-    type: "article",
-    topics: ["data storytelling", "analytics"],
-    source: "mitsloan.mit.edu"
-  },
-  {
-    title: "Data Storytelling 101: What It Is, and Why It Matters for Higher Ed",
-    url: "https://eab.com/resources/blog/data-analytics-blog/data-storytelling/",
-    desc: "Explains what data storytelling is and three barriers that make it challenging on campuses.",
-    type: "article",
-    topics: ["data storytelling", "higher education"],
-    source: "eab.com"
-  },
-  {
-    title: "One Communication Tool You Should Add to Your Toolkit (Stanford GSB)",
-    url: "https://www.gsb.stanford.edu/insights/one-communication-tool-you-should-add-your-toolkit",
-    desc: "Matt Abrahams on providing better feedback, introducing people, and mastering small talk with a simple framework.",
-    type: "article",
-    topics: ["communication", "frameworks"],
-    source: "gsb.stanford.edu"
-  },
-  {
-    title: "Combining Information Design and Theatre",
-    url: "https://medium.com/@federicafragapane/combining-information-design-and-theatre-a-declaration-of-int",
-    desc: "Federica Fragapane on working at the intersection of data visualization and theatrical performance.",
-    type: "article",
-    topics: ["data visualization", "creative"],
-    source: "medium.com"
-  },
-  {
-    title: "Data Storytelling: The Art of Knowing Your Audience",
-    url: "https://www.quanthub.com/data-storytelling-the-art-of-knowing-your-audience/",
-    desc: "Understanding your audience, tailoring presentations, and captivating with data-driven stories.",
-    type: "article",
-    topics: ["data storytelling", "audience"],
-    source: "quanthub.com"
-  },
-  {
-    title: "Data Visualization 101: How to Choose a Chart Type",
-    url: "https://towardsdatascience.com/data-visualization-101-how-to-choose-a-chart-type-9b8830e558d6/",
-    desc: "A guide to selecting the right chart type to best describe your data.",
-    type: "article",
-    topics: ["data visualization"],
-    source: "towardsdatascience.com"
-  },
-  {
-    title: "Continue, Pivot, or Put It Down (The Pudding)",
-    url: "https://pudding.cool/process/pivot-continue-down/",
-    desc: "The Pudding's process for screening ideas for data visualizations — from idea to data story.",
-    type: "article",
-    topics: ["data storytelling", "process"],
-    source: "pudding.cool"
-  },
-  {
-    title: "How and Why We Sketch When Visualizing Data",
-    url: "https://nightingaledvs.com/how-and-why-we-sketch-when-visualizing-dat/",
-    desc: "On the value of sketching in the data visualization process, even if you think you can't draw.",
-    type: "article",
-    topics: ["data visualization", "design"],
-    source: "nightingaledvs.com"
-  },
-  {
-    title: "Does Data Visualization Have Rules? Or Is It All Just 'It Depends'?",
-    url: "https://nightingaledvs.com/does-data-visualization-have-rules-or-is-it-all-just-it-depends/",
-    desc: "Explores the debate around universal dataviz rules vs. context-dependent decisions.",
-    type: "article",
-    topics: ["data visualization"],
-    source: "nightingaledvs.com"
-  },
-  {
-    title: "What a Book Published in the 80s Taught Me about Data Visualization",
-    url: "https://nightingaledvs.com/what-a-book-published-in-the-80s-taught-me-about-data-visualization/",
-    desc: "Lessons from a classic data visualization book discovered in a Welsh bookshop.",
-    type: "article",
-    topics: ["data visualization"],
-    source: "nightingaledvs.com"
-  },
-  {
-    title: "How to Prepare Your Data for Analysis and Charting",
-    url: "https://www.datawrapper.de/blog/prepare-and-clean-up-data-for-data-visualization",
-    desc: "Methods and Excel formulas needed to get your data ready to analyze or plug into Datawrapper.",
-    type: "article",
-    topics: ["data preparation", "tools"],
-    source: "datawrapper.de"
-  },
-  {
-    title: "How to Make a Compelling Pitch (HBR)",
-    url: "https://hbr.org/2023/08/how-to-make-a-compelling-pitch",
-    desc: "Harvard Business Review on pitching ideas, concepts, and perspectives effectively in professional settings.",
-    type: "article",
-    topics: ["communication", "presentation"],
-    source: "hbr.org"
-  },
-  {
-    title: "Slidedocs, Slide Handouts, and One-Pagers (Evergreen Data)",
-    url: "https://stephanieevergreen.com/slidedocs-slide-handouts-and-one-pagers/",
-    desc: "Stephanie Evergreen on three methods of circulating data presentations: slidedocs, handouts, and one-pagers.",
-    type: "article",
-    topics: ["presentation", "design"],
-    source: "stephanieevergreen.com"
-  },
-  {
-    title: "17 Important Data Visualization Techniques (HBS)",
-    url: "https://online.hbs.edu/blog/post/data-visualization-techniques",
-    desc: "Learning effective data visualization techniques as a first step in becoming more data-driven.",
-    type: "article",
-    topics: ["data visualization"],
-    source: "online.hbs.edu"
-  },
-  {
-    title: "Underfunded and Understaffed: Indiana's EMS Face Challenges",
-    url: "https://www.limestonepostmagazine.com/underfunded-and-understaffed-indianas-emergency-medical-services-face-challenges/",
-    desc: "Local example of storytelling and data visualization — investigative journalism from the Arnolt Center on Indiana's EMS crisis.",
-    type: "article",
-    topics: ["data storytelling", "local example"],
-    source: "limestonepostmagazine.com"
-  },
+function getConfig() {
+  try { return JSON.parse(localStorage.getItem(CONFIG_KEY)) || null; } catch { return null; }
+}
+function saveConfig() {
+  const token = document.getElementById('cfgToken').value.trim();
+  const baseId = document.getElementById('cfgBaseId').value.trim();
+  const tableName = document.getElementById('cfgTableName').value.trim() || 'Resources';
+  if (!token || !baseId) { alert('Please enter both your token and base ID.'); return; }
+  localStorage.setItem(CONFIG_KEY, JSON.stringify({ token, baseId, tableName }));
+  document.getElementById('configBanner').classList.add('hidden');
+  loadResources();
+}
 
-  // ===== TOOLS =====
-  {
-    title: "Data Viz Project",
-    url: "https://datavizproject.com/",
-    desc: "A website presenting all relevant data visualizations to help you find the right type and get inspired.",
-    type: "tool",
-    topics: ["data visualization", "reference"],
-    source: "datavizproject.com"
-  },
-  {
-    title: "Color Brewer",
-    url: "https://colorbrewer2.org/",
-    desc: "Color advice for cartography and data visualization — helps select effective color schemes, especially for maps.",
-    type: "tool",
-    topics: ["design", "color"],
-    source: "colorbrewer2.org"
-  },
-  {
-    title: "Gephi",
-    url: "https://gephi.org/",
-    desc: "Leading open-source visualization and exploration software for graphs and networks.",
-    type: "tool",
-    topics: ["data visualization", "networks"],
-    source: "gephi.org"
-  },
-  {
-    title: "QGIS",
-    url: "https://www.qgis.org/",
-    desc: "Free and open-source geographic information system for creating, editing, and analyzing spatial data.",
-    type: "tool",
-    topics: ["data visualization", "maps"],
-    source: "qgis.org"
-  },
-  {
-    title: "Flourish",
-    url: "https://flourish.studio/",
-    desc: "Create stunning charts, maps, and interactive content — no coding required.",
-    type: "tool",
-    topics: ["data visualization", "interactive"],
-    source: "flourish.studio"
-  },
-  {
-    title: "Napkin AI",
-    url: "https://www.napkin.ai/",
-    desc: "AI-powered platform that converts text into diagrams, infographics, and flowcharts — like sketching on a napkin.",
-    type: "tool",
-    topics: ["data visualization", "AI", "design"],
-    source: "napkin.ai"
-  },
-  {
-    title: "Datawrapper",
-    url: "https://www.datawrapper.de/",
-    desc: "Create interactive, responsive, and beautiful data visualizations — no code required.",
-    type: "tool",
-    topics: ["data visualization", "interactive"],
-    source: "datawrapper.de"
-  },
-  {
-    title: "KNIME",
-    url: "https://www.knime.com/",
-    desc: "Open platform for data analytics, reporting, and integration — visual workflow-based data processing.",
-    type: "tool",
-    topics: ["data analysis", "workflow"],
-    source: "knime.com"
-  },
-  {
-    title: "Visual Vocabulary — Designing with Data (FT)",
-    url: "https://ft-interactive.github.io/visual-vocabulary/",
-    desc: "The Financial Times' interactive guide to choosing the right chart type for your data story.",
-    type: "tool",
-    topics: ["data visualization", "reference"],
-    source: "ft-interactive.github.io"
-  },
-  {
-    title: "Data Visualisation Catalogue",
-    url: "https://datavizcatalogue.com/",
-    desc: "A handy guide and library of different data visualization techniques, tools, and learning resources.",
-    type: "tool",
-    topics: ["data visualization", "reference"],
-    source: "datavizcatalogue.com"
-  },
+// ============================================================
+// LOCAL STORAGE for resources (works offline, syncs with Airtable when connected)
+// ============================================================
+function getLocalResources() {
+  try { return JSON.parse(localStorage.getItem(LOCAL_KEY)) || []; } catch { return []; }
+}
+function setLocalResources(arr) {
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(arr));
+}
 
-  // ===== BLOGS & JOURNALS =====
-  {
-    title: "Information is Beautiful",
-    url: "https://informationisbeautiful.net/",
-    desc: "Distilling the world's data, information, and knowledge into beautiful infographics and visualizations.",
-    type: "blog",
-    topics: ["data visualization", "design"],
-    source: "informationisbeautiful.net"
-  },
-  {
-    title: "Dataviz Books Everyone Should Read",
-    url: "https://informationisbeautiful.net/visualizations/dataviz-books/",
-    desc: "A curated selection of data visualization books from Information is Beautiful.",
-    type: "blog",
-    topics: ["data visualization", "reading list"],
-    source: "informationisbeautiful.net"
-  },
-  {
-    title: "Nightingale — Journal of the Data Visualization Society",
-    url: "https://nightingaledvs.com/",
-    desc: "Personal stories, exploratory research, and interviews on data ethics, best practices, and the dataviz community.",
-    type: "blog",
-    topics: ["data visualization", "community"],
-    source: "nightingaledvs.com"
-  },
-  {
-    title: "Flowing Data",
-    url: "https://flowingdata.com/",
-    desc: "Data visualization and statistics — exploring how people use data in everyday life.",
-    type: "blog",
-    topics: ["data visualization", "statistics"],
-    source: "flowingdata.com"
-  },
-  {
-    title: "Datawrapper Blog",
-    url: "https://www.datawrapper.de/blog",
-    desc: "New features, weekly charts, do's and don'ts for data visualization, a Data Vis Book Club, and more.",
-    type: "blog",
-    topics: ["data visualization", "best practices"],
-    source: "datawrapper.de"
-  },
-  {
-    title: "Andy Kirk — Visualising Data",
-    url: "https://visualisingdata.com/",
-    desc: "Resources and insights on data visualization from Andy Kirk, author and dataviz expert.",
-    type: "blog",
-    topics: ["data visualization"],
-    source: "visualisingdata.com"
-  },
-  {
-    title: "Evergreen Data Blog (Stephanie Evergreen)",
-    url: "https://stephanieevergreen.com/",
-    desc: "Practical step-by-step guidance on creating effective visualizations with examples, templates, and tutorials.",
-    type: "blog",
-    topics: ["data visualization", "presentation"],
-    source: "stephanieevergreen.com"
-  },
-
-  // ===== PODCASTS =====
-  {
-    title: "The Data Journalism Podcast",
-    url: "https://creators.spotify.com/pod/profile/ddjpodcast/",
-    desc: "Hosts Alberto Cairo, Simon Rogers, and Scott Klein explore the latest in data journalism with the world's top practitioners.",
-    type: "podcast",
-    topics: ["data journalism", "data visualization"],
-    source: "spotify.com"
-  },
-  {
-    title: "Think Fast, Talk Smart (Matt Abrahams)",
-    url: "https://www.gsb.stanford.edu/business-podcasts/think-fast-talk-smart",
-    desc: "Stanford's podcast on communication strategies — public speaking, presenting, Q&A, and thinking on your feet.",
-    type: "podcast",
-    topics: ["communication", "presentation"],
-    source: "gsb.stanford.edu"
-  },
-
-  // ===== VIDEOS =====
-  {
-    title: "Telling Stories with Data in 3 Steps (Quick Study)",
-    url: "https://youtu.be/r5_34YnCmMY",
-    desc: "A highly recommended short video on the three-step process for telling stories with data. 550K+ views.",
-    type: "video",
-    topics: ["data storytelling"],
-    source: "youtube.com"
-  },
-
-  // ===== RESEARCH PAPERS =====
-  {
-    title: "Narrative Style Influences Citation Frequency in Climate Change Science",
-    url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167983",
-    desc: "Research finding that more narrative scientific abstracts are cited more often — narrative style increases influence.",
-    type: "research",
-    topics: ["narrative", "research"],
-    source: "PLOS ONE"
-  },
-  {
-    title: "Narrative Visualization: Telling Stories with Data",
-    url: "http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf",
-    desc: "Stanford research identifying genres of narrative visualization and the balance between author-driven and reader-driven exploration.",
-    type: "research",
-    topics: ["data storytelling", "data visualization"],
-    source: "Stanford vis.stanford.edu"
-  },
-  {
-    title: "The Science of Visual Data Communication: What Works",
-    url: "http://journals.sagepub.com/stoken/default+domain/10.1177%2F15291006211051956-FREE/full",
-    desc: "Research-backed guidelines for creating effective and intuitive data visualizations for diverse audiences.",
-    type: "research",
-    topics: ["data visualization", "research"],
-    source: "SAGE Journals"
-  },
-
-  // ===== FRAMEWORKS =====
-  {
-    title: "Abrahams' What → So What → Now What Framework",
-    url: "https://www.gsb.stanford.edu/insights/one-communication-tool-you-should-add-your-toolkit",
-    desc: "Matt Abrahams' three-question structure: state the fact, explain why it matters, identify the next step. Works for pitches, intros, and data stories.",
-    type: "framework",
-    topics: ["communication", "frameworks", "data storytelling"],
-    source: "Stanford GSB"
-  },
-  {
-    title: "Abrahams' Pitch Structure",
-    url: "https://www.gsb.stanford.edu/insights/one-communication-tool-you-should-add-your-toolkit",
-    desc: "What if you could... so that... for example... and that's not all. A persuasive pitch formula for data-driven contexts.",
-    type: "framework",
-    topics: ["communication", "presentation"],
-    source: "Stanford GSB"
-  },
-  {
-    title: "KWY Framework — Know What Your...",
-    url: "#",
-    desc: "KWYDIS (Know What Your Data Is Saying), KWYANTH (Know What Your Audience Needs To Hear), KWYRWTS (Know What You Really Want To Say). Balance truth in data, audience needs, and your message.",
-    type: "framework",
-    topics: ["data storytelling", "audience", "communication"],
-    source: "Course Material"
-  },
-  {
-    title: "Duhigg's Three Conversation Mindsets",
-    url: "https://charlesduhigg.com/",
-    desc: "Decision-making, Emotional, and Social mindsets — identify which type of conversation you're having to communicate more effectively.",
-    type: "framework",
-    topics: ["communication", "audience"],
-    source: "Super Communicators"
-  },
-  {
-    title: "Duarte SAID Method",
-    url: "https://www.duarte.com/why-duarte/our-method",
-    desc: "Support, Advance, Immerse, Discern — diagnose what people need from an interaction before responding with data.",
-    type: "framework",
-    topics: ["communication", "audience"],
-    source: "Duarte"
-  },
-
-  // ===== TEACHING MATERIALS =====
-  {
-    title: "Sharing Your Story: Data Storytelling Toolkit (EED TA Center)",
-    url: "https://eed.communities.ed.gov/sites/default/files/2024-11/Sharing%20Your%20Story%20Data%20Storytelling%20Toolkit.pdf",
-    desc: "Comprehensive step-by-step guide for developing data stories: define objectives, identify data, craft narrative, design, and share. Includes templates and checklists.",
-    type: "teaching",
-    topics: ["data storytelling", "higher education", "toolkit"],
-    source: "U.S. Dept. of Education"
-  },
-  {
-    title: "Higher Ed Assignment: Identify a Data Challenge",
-    url: "#",
-    desc: "Assignment helping learners think critically about how data storytelling addresses institutional challenges — identify a problem, articulate value, and map stakeholders.",
-    type: "teaching",
-    topics: ["higher education", "assignment"],
-    source: "Course Material"
-  },
-  {
-    title: "Ice Breaker: Storytelling Introductions (Session 1 Breakout)",
-    url: "https://docs.google.com/presentation/d/1PhKkb4H05ipNeIZl6gkr1ceXrRTGXeAs1WjZzp5vWpY/edit",
-    desc: "Use Abrahams' What/So What/Now What structure for group introductions. Includes breakout slide deck.",
-    type: "teaching",
-    topics: ["communication", "activity"],
-    source: "Google Slides"
-  },
-  {
-    title: "What's Going On in This Graph? (NYT)",
-    url: "https://www.nytimes.com/2023/07/26/learning/over-75-new-york-times-graphs-for-students-to-analyze.html",
-    desc: "75+ New York Times graphs for students to analyze. Key prompts: What do you notice? What do you wonder? What's going on?",
-    type: "teaching",
-    topics: ["data visualization", "critical thinking", "activity"],
-    source: "nytimes.com"
-  },
-  {
-    title: "Session 3 Breakout Slides",
-    url: "https://docs.google.com/presentation/d/1dMjepZqjeDLqY0Xe4YQMubodYlXKzHIWKCYShwgcd3g/edit",
-    desc: "Breakout session slides for data storytelling course — Session 3.",
-    type: "teaching",
-    topics: ["data storytelling", "activity"],
-    source: "Google Slides"
-  }
+// ============================================================
+// BUILT-IN DEFAULT RESOURCES (your original 66)
+// ============================================================
+const DEFAULTS = [
+  {title:"Storytelling with Data",url:"https://www.storytellingwithdata.com/books",desc:"Five best-selling books by Cole Nussbaumer Knaflic on improving data visualization skills and the power of storytelling with data.",type:"Book",topics:"Data Storytelling, Data Visualization",source:"storytellingwithdata.com"},
+  {title:"Data Visualisation: A Handbook for Data Driven Design",url:"https://www.amazon.com/gp/product/B07NQPGL1P/",desc:"By Andy Kirk. A comprehensive handbook for data-driven design covering visualization techniques and best practices.",type:"Book",topics:"Data Visualization, Design",source:"amazon.com"},
+  {title:"The Wall Street Journal Guide to Information Graphics",url:"https://www.goodreads.com/book/show/6542897",desc:"The dos and don'ts of presenting data, facts, and figures.",type:"Book",topics:"Data Visualization, Design",source:"goodreads.com"},
+  {title:"Better Data Visualizations",url:"https://www.amazon.com/gp/product/0231193114",desc:"By Jonathan Schwabish. A guide for creating effective visualizations for scholars and researchers.",type:"Book",topics:"Data Visualization, Research",source:"amazon.com"},
+  {title:"Dear Data",url:"https://www.dear-data.com/theproject",desc:"A year-long analog data drawing project by Giorgia Lupi and Stefanie Posavec.",type:"Book",topics:"Data Visualization, Design, Creative",source:"dear-data.com"},
+  {title:"Invisible Women: Data Bias in a World Designed for Men",url:"https://carolinecriadoperez.com/book/invisible-women/",desc:"Exposes the gender data gap and systemic discrimination against women in data collection.",type:"Book",topics:"Data Ethics, Equity",source:"carolinecriadoperez.com"},
+  {title:"Naked Statistics",url:"https://www.amazon.com/gp/product/B089LY36PH/",desc:"By Charles Wheelan. Makes statistics accessible through intuition and real-world examples.",type:"Book",topics:"Statistics, Data Literacy",source:"amazon.com"},
+  {title:"Everydata",url:"https://www.amazon.com/Everydata-Misinformation-Hidden-Little-Consume/dp/1629561010/",desc:"Reveals the misinformation hidden in everyday data consumption.",type:"Book",topics:"Data Literacy, Critical Thinking",source:"amazon.com"},
+  {title:"The Visual Display of Quantitative Information",url:"https://www.amazon.com/Visual-Display-Quantitative-Information/dp/0961392142",desc:"By Edward R. Tufte. A foundational classic on data graphics.",type:"Book",topics:"Data Visualization, Design",source:"amazon.com"},
+  {title:"Design for Information",url:"https://isabelmeirelles.com/book-design-for-information/",desc:"By Isabel Meirelles. Information design, visualization, and data representation.",type:"Book",topics:"Data Visualization, Design",source:"isabelmeirelles.com"},
+  {title:"Now You See It",url:"https://www.goodreads.com/book/show/56888839-now-you-see-it",desc:"An introduction to visual data sensemaking.",type:"Book",topics:"Data Visualization, Analysis",source:"goodreads.com"},
+  {title:"Data Feminism",url:"https://mitpress.mit.edu/9780262044004/data-feminism/",desc:"Examines justice and equity in data practices from a feminist perspective.",type:"Book",topics:"Data Ethics, Equity",source:"mitpress.mit.edu"},
+  {title:"Science Communication for Scientists",url:"https://www.taylorfrancis.com/books/oa-mono/10.4324/9781003493938/",desc:"Open-access textbook linking strategy, creativity, and respect in science communication.",type:"Book",topics:"Communication, Science",source:"taylorfrancis.com"},
+  {title:"Super Communicators (Charles Duhigg)",url:"https://charlesduhigg.com/",desc:"How to unlock the secret language of connection through conversation mindsets.",type:"Book",topics:"Communication, Audience",source:"charlesduhigg.com"},
+  {title:"Data Storytelling: How to Tell a Great Story with Data",url:"https://www.thoughtspot.com/data-trends/best-practices/data-storytelling",desc:"Crafting narratives by leveraging and contextualizing data for an audience.",type:"Article",topics:"Data Storytelling",source:"thoughtspot.com"},
+  {title:"The Structure(s) of Story",url:"https://www.storytellingwithdata.com/blog/2020/5/21/the-structures-of-story",desc:"How thinking about story has evolved in data communication.",type:"Article",topics:"Data Storytelling, Narrative",source:"storytellingwithdata.com"},
+  {title:"Data Storytelling (HBS)",url:"https://online.hbs.edu/blog/post/data-storytelling",desc:"Harvard Business School on communicating insights using narratives and visualizations.",type:"Article",topics:"Data Storytelling",source:"online.hbs.edu"},
+  {title:"Effective Data Storytelling (DASCA)",url:"https://www.dasca.org/world-of-data-science/article/effective-data-storytelling-tips-and-techniques",desc:"Expert tips on data storytelling and visualization.",type:"Article",topics:"Data Storytelling, Data Visualization",source:"dasca.org"},
+  {title:"The Next Chapter in Analytics (MIT Sloan)",url:"https://mitsloan.mit.edu/ideas-made-to-matter/next-chapter-analytics-data-storytelling",desc:"Presenting data with empathy and context for better decision-making.",type:"Article",topics:"Data Storytelling, Analytics",source:"mitsloan.mit.edu"},
+  {title:"Data Storytelling 101 for Higher Ed",url:"https://eab.com/resources/blog/data-analytics-blog/data-storytelling/",desc:"What data storytelling is and three barriers on campuses.",type:"Article",topics:"Data Storytelling, Higher Education",source:"eab.com"},
+  {title:"One Communication Tool (Stanford GSB)",url:"https://www.gsb.stanford.edu/insights/one-communication-tool-you-should-add-your-toolkit",desc:"Matt Abrahams on feedback, small talk, and the What/So What/Now What framework.",type:"Article",topics:"Communication, Frameworks",source:"gsb.stanford.edu"},
+  {title:"Combining Information Design and Theatre",url:"https://medium.com/@federicafragapane/combining-information-design-and-theatre",desc:"Federica Fragapane on dataviz meets theatrical performance.",type:"Article",topics:"Data Visualization, Creative",source:"medium.com"},
+  {title:"The Art of Knowing Your Audience",url:"https://www.quanthub.com/data-storytelling-the-art-of-knowing-your-audience/",desc:"Understanding and tailoring data presentations to your audience.",type:"Article",topics:"Data Storytelling, Audience",source:"quanthub.com"},
+  {title:"How to Choose a Chart Type",url:"https://towardsdatascience.com/data-visualization-101-how-to-choose-a-chart-type-9b8830e558d6/",desc:"Selecting the right chart type for your data.",type:"Article",topics:"Data Visualization",source:"towardsdatascience.com"},
+  {title:"Continue, Pivot, or Put It Down",url:"https://pudding.cool/process/pivot-continue-down/",desc:"The Pudding's idea-screening process for data stories.",type:"Article",topics:"Data Storytelling, Process",source:"pudding.cool"},
+  {title:"How and Why We Sketch When Visualizing Data",url:"https://nightingaledvs.com/how-and-why-we-sketch-when-visualizing-dat/",desc:"The value of sketching in the dataviz process.",type:"Article",topics:"Data Visualization, Design",source:"nightingaledvs.com"},
+  {title:"Does Data Visualization Have Rules?",url:"https://nightingaledvs.com/does-data-visualization-have-rules-or-is-it-all-just-it-depends/",desc:"Universal dataviz rules vs. context-dependent decisions.",type:"Article",topics:"Data Visualization",source:"nightingaledvs.com"},
+  {title:"What a Book from the 80s Taught Me about Dataviz",url:"https://nightingaledvs.com/what-a-book-published-in-the-80s-taught-me-about-data-visualization/",desc:"Lessons from a classic dataviz book.",type:"Article",topics:"Data Visualization",source:"nightingaledvs.com"},
+  {title:"How to Prepare Data for Analysis and Charting",url:"https://www.datawrapper.de/blog/prepare-and-clean-up-data-for-data-visualization",desc:"Methods and formulas for getting data ready for visualization.",type:"Article",topics:"Data Preparation, Tools",source:"datawrapper.de"},
+  {title:"How to Make a Compelling Pitch (HBR)",url:"https://hbr.org/2023/08/how-to-make-a-compelling-pitch",desc:"Pitching ideas effectively in professional settings.",type:"Article",topics:"Communication, Presentation",source:"hbr.org"},
+  {title:"Slidedocs, Handouts, and One-Pagers",url:"https://stephanieevergreen.com/slidedocs-slide-handouts-and-one-pagers/",desc:"Three methods for circulating data presentations.",type:"Article",topics:"Presentation, Design",source:"stephanieevergreen.com"},
+  {title:"17 Data Visualization Techniques (HBS)",url:"https://online.hbs.edu/blog/post/data-visualization-techniques",desc:"Effective visualization techniques for becoming data-driven.",type:"Article",topics:"Data Visualization",source:"online.hbs.edu"},
+  {title:"Indiana's EMS Challenges (Local Example)",url:"https://www.limestonepostmagazine.com/underfunded-and-understaffed-indianas-emergency-medical-services-face-challenges/",desc:"Local investigative journalism combining storytelling and data visualization.",type:"Article",topics:"Data Storytelling, Local Example",source:"limestonepostmagazine.com"},
+  {title:"Data Viz Project",url:"https://datavizproject.com/",desc:"Find the right visualization type and get inspired.",type:"Tool",topics:"Data Visualization, Reference",source:"datavizproject.com"},
+  {title:"Color Brewer",url:"https://colorbrewer2.org/",desc:"Color advice for cartography and data visualization.",type:"Tool",topics:"Design, Color",source:"colorbrewer2.org"},
+  {title:"Gephi",url:"https://gephi.org/",desc:"Open-source software for graph and network visualization.",type:"Tool",topics:"Data Visualization, Networks",source:"gephi.org"},
+  {title:"QGIS",url:"https://www.qgis.org/",desc:"Free and open-source geographic information system.",type:"Tool",topics:"Data Visualization, Maps",source:"qgis.org"},
+  {title:"Flourish",url:"https://flourish.studio/",desc:"Create stunning charts, maps, and interactive content — no coding.",type:"Tool",topics:"Data Visualization, Interactive",source:"flourish.studio"},
+  {title:"Napkin AI",url:"https://www.napkin.ai/",desc:"AI-powered text-to-diagram, infographic, and flowchart tool.",type:"Tool",topics:"Data Visualization, AI, Design",source:"napkin.ai"},
+  {title:"Datawrapper",url:"https://www.datawrapper.de/",desc:"Interactive, responsive data visualizations — no code required.",type:"Tool",topics:"Data Visualization, Interactive",source:"datawrapper.de"},
+  {title:"KNIME",url:"https://www.knime.com/",desc:"Open platform for data analytics and visual workflows.",type:"Tool",topics:"Data Analysis, Workflow",source:"knime.com"},
+  {title:"Visual Vocabulary (FT)",url:"https://ft-interactive.github.io/visual-vocabulary/",desc:"The Financial Times guide to choosing the right chart type.",type:"Tool",topics:"Data Visualization, Reference",source:"ft-interactive.github.io"},
+  {title:"Data Visualisation Catalogue",url:"https://datavizcatalogue.com/",desc:"Library of visualization techniques, tools, and learning resources.",type:"Tool",topics:"Data Visualization, Reference",source:"datavizcatalogue.com"},
+  {title:"Information is Beautiful",url:"https://informationisbeautiful.net/",desc:"Beautiful infographics and visualizations of world data.",type:"Blog",topics:"Data Visualization, Design",source:"informationisbeautiful.net"},
+  {title:"Dataviz Books Everyone Should Read",url:"https://informationisbeautiful.net/visualizations/dataviz-books/",desc:"Curated selection of dataviz books.",type:"Blog",topics:"Data Visualization, Reading List",source:"informationisbeautiful.net"},
+  {title:"Nightingale (Data Visualization Society)",url:"https://nightingaledvs.com/",desc:"Stories, research, and interviews on data ethics and best practices.",type:"Blog",topics:"Data Visualization, Community",source:"nightingaledvs.com"},
+  {title:"Flowing Data",url:"https://flowingdata.com/",desc:"Data visualization and statistics in everyday life.",type:"Blog",topics:"Data Visualization, Statistics",source:"flowingdata.com"},
+  {title:"Datawrapper Blog",url:"https://www.datawrapper.de/blog",desc:"Weekly charts, do's and don'ts, and a Data Vis Book Club.",type:"Blog",topics:"Data Visualization, Best Practices",source:"datawrapper.de"},
+  {title:"Andy Kirk — Visualising Data",url:"https://visualisingdata.com/",desc:"Resources and insights from dataviz expert Andy Kirk.",type:"Blog",topics:"Data Visualization",source:"visualisingdata.com"},
+  {title:"Evergreen Data (Stephanie Evergreen)",url:"https://stephanieevergreen.com/",desc:"Practical guidance on effective visualizations with examples and templates.",type:"Blog",topics:"Data Visualization, Presentation",source:"stephanieevergreen.com"},
+  {title:"The Data Journalism Podcast",url:"https://creators.spotify.com/pod/profile/ddjpodcast/",desc:"Alberto Cairo, Simon Rogers, and Scott Klein on data journalism.",type:"Podcast",topics:"Data Journalism, Data Visualization",source:"spotify.com"},
+  {title:"Think Fast, Talk Smart",url:"https://www.gsb.stanford.edu/business-podcasts/think-fast-talk-smart",desc:"Stanford podcast on communication, speaking, and presenting.",type:"Podcast",topics:"Communication, Presentation",source:"gsb.stanford.edu"},
+  {title:"Telling Stories with Data in 3 Steps",url:"https://youtu.be/r5_34YnCmMY",desc:"Short video on the three-step process for data storytelling. 550K+ views.",type:"Video",topics:"Data Storytelling",source:"youtube.com"},
+  {title:"Narrative Style Influences Citation Frequency",url:"https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167983",desc:"More narrative abstracts are cited more often in climate science.",type:"Research",topics:"Narrative, Research",source:"PLOS ONE"},
+  {title:"Narrative Visualization: Telling Stories with Data",url:"http://vis.stanford.edu/files/2010-Narrative-InfoVis.pdf",desc:"Stanford research on genres of narrative visualization.",type:"Research",topics:"Data Storytelling, Data Visualization",source:"Stanford"},
+  {title:"The Science of Visual Data Communication",url:"http://journals.sagepub.com/stoken/default+domain/10.1177%2F15291006211051956-FREE/full",desc:"Research-backed guidelines for effective data visualizations.",type:"Research",topics:"Data Visualization, Research",source:"SAGE Journals"},
+  {title:"Abrahams: What / So What / Now What",url:"https://www.gsb.stanford.edu/insights/one-communication-tool-you-should-add-your-toolkit",desc:"Three-question structure: state the fact, explain why it matters, identify the next step.",type:"Framework",topics:"Communication, Frameworks, Data Storytelling",source:"Stanford GSB"},
+  {title:"Abrahams Pitch Structure",url:"https://www.gsb.stanford.edu/insights/one-communication-tool-you-should-add-your-toolkit",desc:"What if you could... so that... for example... and that's not all.",type:"Framework",topics:"Communication, Presentation",source:"Stanford GSB"},
+  {title:"KWY Framework",url:"#",desc:"Know What Your Data Is Saying, Know What Your Audience Needs To Hear, Know What You Really Want To Say.",type:"Framework",topics:"Data Storytelling, Audience, Communication",source:"Course Material"},
+  {title:"Duhigg's Three Conversation Mindsets",url:"https://charlesduhigg.com/",desc:"Decision-making, Emotional, and Social mindsets in conversations.",type:"Framework",topics:"Communication, Audience",source:"Super Communicators"},
+  {title:"Duarte SAID Method",url:"https://www.duarte.com/why-duarte/our-method",desc:"Support, Advance, Immerse, Discern — diagnose what people need.",type:"Framework",topics:"Communication, Audience",source:"Duarte"},
+  {title:"Sharing Your Story Toolkit (EED TA Center)",url:"https://eed.communities.ed.gov/",desc:"Step-by-step guide: define objectives, identify data, craft narrative, design, and share.",type:"Teaching",topics:"Data Storytelling, Higher Education, Toolkit",source:"U.S. Dept. of Education"},
+  {title:"Assignment: Identify a Data Challenge",url:"#",desc:"Learners identify a data communication problem, articulate its value, and map stakeholders.",type:"Teaching",topics:"Higher Education, Assignment",source:"Course Material"},
+  {title:"Ice Breaker: Storytelling Introductions",url:"https://docs.google.com/presentation/d/1PhKkb4H05ipNeIZl6gkr1ceXrRTGXeAs1WjZzp5vWpY/edit",desc:"Use Abrahams' framework for group introductions. Breakout slide deck included.",type:"Teaching",topics:"Communication, Activity",source:"Google Slides"},
+  {title:"What's Going On in This Graph? (NYT)",url:"https://www.nytimes.com/2023/07/26/learning/over-75-new-york-times-graphs-for-students-to-analyze.html",desc:"75+ NYT graphs for students. What do you notice? What do you wonder?",type:"Teaching",topics:"Data Visualization, Critical Thinking, Activity",source:"nytimes.com"},
+  {title:"Session 3 Breakout Slides",url:"https://docs.google.com/presentation/d/1dMjepZqjeDLqY0Xe4YQMubodYlXKzHIWKCYShwgcd3g/edit",desc:"Breakout session slides for data storytelling course.",type:"Teaching",topics:"Data Storytelling, Activity",source:"Google Slides"}
 ];
 
-// Render
+// ============================================================
+// DATA LAYER
+// ============================================================
+let allResources = [];
+let dataSource = 'defaults'; // 'defaults', 'local', 'airtable'
+
+async function loadResources() {
+  const cfg = getConfig();
+  const localData = getLocalResources();
+
+  // Try Airtable first
+  if (cfg) {
+    document.getElementById('loading').classList.remove('hidden');
+    try {
+      const records = await fetchAirtable(cfg);
+      allResources = records.map(r => ({
+        id: r.id,
+        title: r.fields.Title || '',
+        url: r.fields.URL || '#',
+        desc: r.fields.Description || '',
+        type: r.fields.Type || 'Article',
+        topics: r.fields.Topics || '',
+        source: r.fields.Source || ''
+      }));
+      dataSource = 'airtable';
+      document.getElementById('lastSync').textContent = new Date().toLocaleString();
+    } catch (e) {
+      console.error('Airtable error:', e);
+      // Fall back to local + defaults
+      allResources = localData.length > 0 ? localData : DEFAULTS;
+      dataSource = localData.length > 0 ? 'local' : 'defaults';
+    }
+    document.getElementById('loading').classList.add('hidden');
+  } else if (localData.length > 0) {
+    allResources = localData;
+    dataSource = 'local';
+  } else {
+    allResources = DEFAULTS;
+    dataSource = 'defaults';
+  }
+
+  updateStatus();
+  render();
+}
+
+async function fetchAirtable(cfg) {
+  let all = [];
+  let offset = null;
+  do {
+    const url = `https://api.airtable.com/v0/${cfg.baseId}/${encodeURIComponent(cfg.tableName)}?pageSize=100` + (offset ? `&offset=${offset}` : '');
+    const res = await fetch(url, { headers: { 'Authorization': `Bearer ${cfg.token}` } });
+    if (!res.ok) throw new Error(`Airtable ${res.status}`);
+    const data = await res.json();
+    all = all.concat(data.records || []);
+    offset = data.offset;
+  } while (offset);
+  return all;
+}
+
+async function createAirtableRecord(resource) {
+  const cfg = getConfig();
+  if (!cfg) return null;
+  const res = await fetch(`https://api.airtable.com/v0/${cfg.baseId}/${encodeURIComponent(cfg.tableName)}`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${cfg.token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: { Title: resource.title, URL: resource.url, Description: resource.desc, Type: resource.type, Topics: resource.topics, Source: resource.source } })
+  });
+  if (!res.ok) throw new Error(`Airtable create ${res.status}`);
+  return await res.json();
+}
+
+function updateStatus() {
+  const bar = document.getElementById('statusBar');
+  const cfg = getConfig();
+  if (dataSource === 'airtable') {
+    bar.innerHTML = `<span class="status-dot connected"></span> Connected to Airtable &middot; ${allResources.length} resources`;
+    document.getElementById('configBanner').classList.add('hidden');
+    document.getElementById('modalSub').textContent = 'This will be saved to your Airtable base.';
+  } else if (dataSource === 'local') {
+    bar.innerHTML = `<span class="status-dot local"></span> Using locally saved resources &middot; ${allResources.length} resources`;
+    if (!cfg) document.getElementById('configBanner').classList.remove('hidden');
+  } else {
+    bar.innerHTML = `<span class="status-dot offline"></span> Using built-in resources &middot; ${allResources.length} resources &middot; <a href="#" onclick="document.getElementById('configBanner').classList.toggle('hidden');return false;">Connect Airtable</a>`;
+    if (!cfg) document.getElementById('configBanner').classList.remove('hidden');
+  }
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+const typeIcons = { Book:'📚', Article:'📄', Tool:'🛠', Blog:'📰', Podcast:'🎙', Video:'🎬', Research:'🔬', Framework:'🧭', Teaching:'🎓' };
+const typeOrder = ['Book','Article','Tool','Blog','Podcast','Video','Research','Framework','Teaching'];
+
+function normalizeType(t) { return t ? t.charAt(0).toUpperCase() + t.slice(1).toLowerCase() : 'Article'; }
+
 function render() {
   const search = document.getElementById('searchBox').value.toLowerCase();
   const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
 
-  const filtered = resources.filter(r => {
-    const matchType = activeFilter === 'all' || r.type === activeFilter;
+  const filtered = allResources.filter(r => {
+    const nt = normalizeType(r.type).toLowerCase();
+    const matchType = activeFilter === 'all' || nt === activeFilter;
     const matchSearch = !search ||
-      r.title.toLowerCase().includes(search) ||
-      r.desc.toLowerCase().includes(search) ||
-      r.topics.some(t => t.toLowerCase().includes(search)) ||
-      r.type.toLowerCase().includes(search) ||
-      r.source.toLowerCase().includes(search);
+      (r.title||'').toLowerCase().includes(search) ||
+      (r.desc||'').toLowerCase().includes(search) ||
+      (r.topics||'').toLowerCase().includes(search) ||
+      (r.type||'').toLowerCase().includes(search) ||
+      (r.source||'').toLowerCase().includes(search);
     return matchType && matchSearch;
   });
 
-  // Group by type
   const groups = {};
-  const typeOrder = ['book','article','tool','blog','podcast','video','research','framework','teaching'];
-  const typeLabels = {
-    book: '📚 Books', article: '📄 Articles & Blog Posts', tool: '🛠 Tools & Software',
-    blog: '📰 Blogs & Journals', podcast: '🎙 Podcasts', video: '🎬 Videos',
-    research: '🔬 Research Papers', framework: '🧭 Frameworks & Methods', teaching: '🎓 Teaching Materials'
-  };
   filtered.forEach(r => {
-    if (!groups[r.type]) groups[r.type] = [];
-    groups[r.type].push(r);
+    const nt = normalizeType(r.type);
+    if (!groups[nt]) groups[nt] = [];
+    groups[nt].push(r);
   });
 
   let html = '';
   typeOrder.forEach(type => {
-    if (!groups[type] || groups[type].length === 0) return;
+    if (!groups[type]) return;
     const items = groups[type];
-    html += `<div class="section-header" data-section="${type}">
-      <span class="icon">${typeLabels[type].split(' ')[0]}</span>
-      <h2>${typeLabels[type].substring(typeLabels[type].indexOf(' ')+1)}</h2>
-      <span class="count">${items.length}</span>
-    </div>`;
-    html += `<div class="grid">`;
+    const icon = typeIcons[type] || '📌';
+    html += `<div class="section-header"><span style="font-size:1.3rem">${icon}</span><h2>${type}s</h2><span class="count">${items.length}</span></div><div class="grid">`;
     items.forEach(r => {
-      const topicTags = r.topics.map(t => `<span class="tag tag-topic">${t}</span>`).join('');
-      html += `<div class="card" data-type="${r.type}">
-        <div class="card-body">
-          <div class="card-title"><a href="${r.url}" target="_blank" rel="noopener">${r.title}</a></div>
-          <div class="card-desc">${r.desc}</div>
-          <div class="card-meta">
-            <span class="tag tag-${r.type}">${r.type}</span>
-            ${topicTags}
-          </div>
-          <div class="card-source">${r.source}</div>
-        </div>
-      </div>`;
+      const nt = normalizeType(r.type).toLowerCase();
+      const topics = (r.topics || '').split(',').map(t => t.trim()).filter(Boolean);
+      const topicTags = topics.map(t => `<span class="tag tag-topic">${t}</span>`).join('');
+      html += `<div class="card" data-type="${nt}"><div class="card-body">
+        <div class="card-title"><a href="${r.url}" target="_blank" rel="noopener">${r.title}</a></div>
+        <div class="card-desc">${r.desc}</div>
+        <div class="card-meta"><span class="tag tag-${nt}">${nt}</span>${topicTags}</div>
+        ${r.source ? `<div class="card-source">${r.source}</div>` : ''}
+      </div></div>`;
     });
     html += `</div>`;
   });
@@ -847,14 +546,76 @@ function render() {
   document.getElementById('noResults').classList.toggle('hidden', filtered.length > 0);
 
   // Stats
-  document.getElementById('totalCount').textContent = resources.length;
-  document.getElementById('bookCount').textContent = resources.filter(r => r.type === 'book').length;
-  document.getElementById('articleCount').textContent = resources.filter(r => r.type === 'article').length;
-  document.getElementById('toolCount').textContent = resources.filter(r => r.type === 'tool').length;
-  document.getElementById('frameworkCount').textContent = resources.filter(r => r.type === 'framework').length;
+  const counts = {};
+  allResources.forEach(r => { const t = normalizeType(r.type); counts[t] = (counts[t]||0)+1; });
+  document.getElementById('totalCount').textContent = allResources.length;
+  document.getElementById('bookCount').textContent = counts.Book || 0;
+  document.getElementById('articleCount').textContent = counts.Article || 0;
+  document.getElementById('toolCount').textContent = counts.Tool || 0;
+  document.getElementById('frameworkCount').textContent = counts.Framework || 0;
 }
 
-// Filters
+// ============================================================
+// MODAL / ADD RESOURCE
+// ============================================================
+document.getElementById('addBtn').addEventListener('click', () => {
+  document.getElementById('modalOverlay').classList.add('open');
+});
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  ['fTitle','fUrl','fDesc','fTopics','fSource'].forEach(id => document.getElementById(id).value = '');
+}
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+
+async function saveResource() {
+  const title = document.getElementById('fTitle').value.trim();
+  const url = document.getElementById('fUrl').value.trim();
+  const desc = document.getElementById('fDesc').value.trim();
+  const type = document.getElementById('fType').value;
+  const topics = document.getElementById('fTopics').value.trim();
+  const source = document.getElementById('fSource').value.trim();
+
+  if (!title || !url) { alert('Title and URL are required.'); return; }
+
+  const resource = { title, url, desc, type, topics, source };
+  const btn = document.getElementById('saveBtn');
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
+
+  try {
+    // Try Airtable first
+    const cfg = getConfig();
+    if (cfg) {
+      await createAirtableRecord(resource);
+      await loadResources(); // Refresh from Airtable
+    } else {
+      // Save locally
+      const local = getLocalResources();
+      if (local.length === 0) {
+        // First local save — include defaults
+        DEFAULTS.forEach(d => local.push(d));
+      }
+      local.push(resource);
+      setLocalResources(local);
+      allResources = local;
+      dataSource = 'local';
+      updateStatus();
+      render();
+    }
+    closeModal();
+  } catch (e) {
+    alert('Error saving: ' + e.message);
+  } finally {
+    btn.textContent = 'Save Resource';
+    btn.disabled = false;
+  }
+}
+
+// ============================================================
+// FILTERS & SEARCH
+// ============================================================
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -862,12 +623,12 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     render();
   });
 });
-
-// Search
 document.getElementById('searchBox').addEventListener('input', render);
 
-// Init
-render();
+// ============================================================
+// INIT
+// ============================================================
+loadResources();
 </script>
 </body>
 </html>
